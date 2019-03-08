@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess() {
                 // posts 초기화했기 때문에 Adapter 다시 생성
 //                myAdapter.notifyDataSetChanged();
-                myAdapter = new MyAdapter(BulletinBoardClient.getPosts());
+                myAdapter = new MyAdapter(context, BulletinBoardClient.getPosts());
                 mRecyclerView.setAdapter(myAdapter);
             }
 
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         bbc = BulletinBoardClient.getInstance(this);
         bbc.loadPosts(callBack);
 
-        myAdapter = new MyAdapter(BulletinBoardClient.getPosts());
+        myAdapter = new MyAdapter(context, BulletinBoardClient.getPosts());
         mRecyclerView.setAdapter(myAdapter);
 
     }
