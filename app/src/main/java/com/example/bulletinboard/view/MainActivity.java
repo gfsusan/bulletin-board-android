@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launchDetailActivity(context);
+                launchAddActivity(context);
             }
         });
 
@@ -101,9 +101,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void launchDetailActivity(Context context) {
+    private void launchAddActivity(Context context) {
 
-        Intent intent = new Intent(context, DetailActivity.class);
+        Intent intent = new Intent(context, AddActivity.class);
         context.startActivity(intent);
     }
 
