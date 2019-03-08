@@ -32,7 +32,7 @@ public class BulletinBoardClient {
     public  BulletinBoardClient(Context context) {
         this.mContext = context;
         queue = Volley.newRequestQueue(this.mContext);
-        posts = new ArrayList<Post>();
+        posts = new ArrayList<>();
     }
 
     public static synchronized BulletinBoardClient getInstance(Context context) {
@@ -43,7 +43,7 @@ public class BulletinBoardClient {
         return instance;
     }
 
-    public void loadPosts() {
+    public void loadPosts(final VolleyCallBack callback) {
         StringRequest stringRequest= new StringRequest(Request.Method.GET, baseURL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -62,13 +62,16 @@ public class BulletinBoardClient {
                     String content = jo.get("content").toString();
 
                     posts.add(new Post(number, title, content));
-
                 }
+
+                callback.onSuccess();
+                Log.d(TAG, "Get successful.");
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 // do this on error
+                callback.onFailure();
             }
         });
 
