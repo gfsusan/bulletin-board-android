@@ -4,14 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.example.bulletinboard.R;
 import com.example.bulletinboard.controller.BulletinBoardClient;
 import com.example.bulletinboard.controller.VolleyCallBack;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -22,9 +18,6 @@ public class MainActivity extends AppCompatActivity {
 
     private BulletinBoardClient bbc;
     private VolleyCallBack callBack;
-
-    private TimerTask timerTask;
-    private Timer loadTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

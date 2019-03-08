@@ -1,7 +1,6 @@
 package com.example.bulletinboard.controller;
 
 import android.content.Context;
-import android.media.MediaDrm;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -11,7 +10,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.bulletinboard.model.Post;
-import com.example.bulletinboard.view.MyAdapter;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
