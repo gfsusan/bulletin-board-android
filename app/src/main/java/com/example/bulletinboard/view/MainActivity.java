@@ -35,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
             @Override
             public boolean onInterceptTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+
+                }
                 return false;
             }
 
@@ -57,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess() {
+                // posts 초기화했기 때문에 Adapter 다시 생성
+//                myAdapter.notifyDataSetChanged();
                 myAdapter = new MyAdapter(BulletinBoardClient.getPosts());
                 mRecyclerView.setAdapter(myAdapter);
             }
