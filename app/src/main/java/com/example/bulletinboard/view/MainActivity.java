@@ -1,10 +1,14 @@
 package com.example.bulletinboard.view;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -14,6 +18,12 @@ import com.example.bulletinboard.controller.VolleyCallBack;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+
+    private Context context = this;
+
+    private FloatingActionButton addButton;
+
+    private Toolbar toolbar;
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -26,6 +36,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        addButton = findViewById(R.id.addButton);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchDetailActivity(context);
+            }
+        });
+
+        toolbar = findViewById(R.id.main_toolbar);
+        setSupportActionBar(toolbar);
 
         mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
@@ -79,4 +100,11 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(myAdapter);
 
     }
+
+    private void launchDetailActivity(Context context) {
+
+        Intent intent = new Intent(context, DetailActivity.class);
+        context.startActivity(intent);
+    }
+
 }
