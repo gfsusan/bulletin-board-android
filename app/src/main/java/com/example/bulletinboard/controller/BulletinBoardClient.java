@@ -57,9 +57,9 @@ public class BulletinBoardClient {
                 for (JsonElement jsonElement : jsonArray) {
                     JsonObject jo = (JsonObject) jsonElement;
 
-                    String number = jo.get("number").toString();
-                    String title = jo.get("title").toString();
-                    String content = jo.get("content").toString();
+                    int number = jo.get("number").getAsInt();
+                    String title = jo.get("title").getAsString();
+                    String content = jo.get("content").getAsString();
 
                     posts.add(new Post(number, title, content));
                 }
