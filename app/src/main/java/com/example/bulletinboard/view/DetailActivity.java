@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -27,6 +29,7 @@ public class DetailActivity extends AppCompatActivity {
         actionBar = findViewById(R.id.detail_toolbar);
         setSupportActionBar(actionBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
 
         title_tv = findViewById(R.id.detail_title_tv);
         content_tv = findViewById(R.id.detail_content_tv);
@@ -44,10 +47,23 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        navigateUpTo(new Intent(this, MainActivity.class));
-
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.detail_menu, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.detail_action_modify:
+                return true;
+            case R.id.detail_action_delete:
+                return true;
+            default:
+                navigateUpTo(new Intent(this, MainActivity.class));
+                return true;
+        }
     }
 
 }
