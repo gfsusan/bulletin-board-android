@@ -8,36 +8,39 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.widget.EditText;
 
 import com.example.bulletinboard.R;
+import com.example.bulletinboard.controller.BulletinBoardClient;
 import com.example.bulletinboard.model.Post;
 
-public class DetailActivity extends AppCompatActivity {
+public class ModifyActivity extends AppCompatActivity {
 
+    private final String TAG = "AddActivity";
     Context context;
 
-    Toolbar actionBar;
+    Toolbar toolbar;
 
-    TextView title_tv;
-    TextView content_tv;
+    EditText title_tf;
+    EditText content_tf;
 
-    private Post post;
+    BulletinBoardClient bbc;
+    Post post;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+        setContentView(R.layout.activity_modify);
 
         context = this;
 
-        actionBar = findViewById(R.id.detail_toolbar);
-        setSupportActionBar(actionBar);
+        toolbar = findViewById(R.id.modify_toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
 
-        title_tv = findViewById(R.id.detail_title_tv);
-        content_tv = findViewById(R.id.detail_content_tv);
+        title_tf = findViewById(R.id.modify_title_tf);
+        content_tf = findViewById(R.id.modify_content_tf);
 
         Intent intent = getIntent();
 
@@ -46,33 +49,29 @@ public class DetailActivity extends AppCompatActivity {
         String content = intent.getStringExtra("content");
 
         post = new Post(number, title, content);
+        title_tf.setText(post.title);
+        content_tf.setText(post.content);
 
-        title_tv.setText(post.title);
-        content_tv.setText(post.content);
+        bbc = BulletinBoardClient.getInstance(this);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.detail_menu, menu);
+        menuInflater.inflate(R.menu.add_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.detail_action_modify:
-                Intent intent = new Intent(this, ModifyActivity.class);
-                intent.putExtra("title", title_tv.getText().toString());
-                intent.putExtra("content", content_tv.getText().toString());
-                context.startActivity(intent);
-                return true;
-            case R.id.detail_action_delete:
+            case R.id.add_action_save:
+                // bbc.putRequest();
                 return true;
             default:
                 navigateUpTo(new Intent(this, MainActivity.class));
                 return true;
+
         }
     }
-
 }
