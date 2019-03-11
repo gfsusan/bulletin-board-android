@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.bulletinboard.R;
 import com.example.bulletinboard.controller.BulletinBoardClient;
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         callBack = new VolleyCallBack() {
             @Override
             public void onError(Throwable t) {
-
+                Toast.makeText(context, "Unable to connect to server.", Toast.LENGTH_SHORT).show();
             }
 
             @Override

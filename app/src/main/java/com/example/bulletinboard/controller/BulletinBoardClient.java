@@ -77,7 +77,7 @@ public class BulletinBoardClient {
             @Override
             public void onErrorResponse(VolleyError error) {
                 // do this on error
-                callback.onFailure();
+                callback.onError(new Throwable());
             }
         });
 
