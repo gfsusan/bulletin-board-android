@@ -63,8 +63,9 @@ public class DetailActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.detail_action_modify:
                 Intent intent = new Intent(this, ModifyActivity.class);
-                intent.putExtra("title", title_tv.getText().toString());
-                intent.putExtra("content", content_tv.getText().toString());
+                intent.putExtra("number", post.number);
+                intent.putExtra("title", post.title);
+                intent.putExtra("content", post.content);
                 context.startActivity(intent);
                 return true;
             case R.id.detail_action_delete:

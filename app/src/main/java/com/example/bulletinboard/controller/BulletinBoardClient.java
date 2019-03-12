@@ -1,6 +1,7 @@
 package com.example.bulletinboard.controller;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -125,6 +126,46 @@ public class BulletinBoardClient {
         queue.add(stringRequest);
     }
 
+    public void modifyPost(final int number, final String title, final String content, final VolleyCallBack callBack) {
+        String url = baseURL + "/" + number;
+        StringRequest stringRequest = new StringRequest(Request.Method.PUT, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                callBack.onSuccess();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                callBack.onError(new Throwable());
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("number", "" + number);
+                params.put("title", title);
+                params.put("content", content);
+
+                Log.i(TAG, "number : " + number);
+                Log.i(TAG, "title : " + title);
+                Log.i(TAG, "content : " + content);
+
+                return params;
+            }
+
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                int statusCode = response.statusCode;
+                if (statusCode == 400) {
+                    callBack.onError(new Throwable());
+                }
+                return super.parseNetworkResponse(response);
+            }
+        };
+
+        stringRequest.setTag(TAG);
+        queue.add(stringRequest);
+    }
 
     public static ArrayList<Post> getPosts() {
         return posts;
