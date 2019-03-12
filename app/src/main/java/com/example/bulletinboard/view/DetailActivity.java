@@ -21,14 +21,14 @@ public class DetailActivity extends AppCompatActivity {
 
     private final String TAG = "DetailActivity";
 
-    Context context;
+    private Context context;
 
-    Toolbar actionBar;
+    private Toolbar actionBar;
 
-    TextView title_tv;
-    TextView content_tv;
+    private TextView title_tv;
+    private TextView content_tv;
 
-    BulletinBoardClient bbc;
+    private BulletinBoardClient bbc;
     private Post post;
 
     @Override

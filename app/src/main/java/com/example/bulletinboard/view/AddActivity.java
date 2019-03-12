@@ -19,14 +19,14 @@ import com.example.bulletinboard.controller.VolleyCallBack;
 public class AddActivity extends AppCompatActivity {
 
     private final String TAG = "AddActivity";
-    Context context;
+    private Context context;
 
-    Toolbar toolbar;
+    private Toolbar toolbar;
 
-    EditText title_tf;
-    EditText content_tf;
+    private EditText title_tf;
+    private EditText content_tf;
 
-    BulletinBoardClient bbc;
+    private BulletinBoardClient bbc;
 
     // number for keeping track of "number" field
     int number = 1;

@@ -9,10 +9,10 @@ import com.example.bulletinboard.controller.ItemClickListener;
 import com.example.bulletinboard.model.Post;
 
 public class MyHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    Post post;
+    private Post post;
 
-    TextView tvTitle;
-    TextView tvContent;
+    protected TextView tvTitle;
+    protected TextView tvContent;
 
     private ItemClickListener itemClickListener;
 

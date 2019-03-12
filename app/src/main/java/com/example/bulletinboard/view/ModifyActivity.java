@@ -20,15 +20,15 @@ import com.example.bulletinboard.model.Post;
 public class ModifyActivity extends AppCompatActivity {
 
     private final String TAG = "AddActivity";
-    Context context;
+    private Context context;
 
-    Toolbar toolbar;
+    private Toolbar toolbar;
 
-    EditText title_tf;
-    EditText content_tf;
+    private EditText title_tf;
+    private EditText content_tf;
 
-    BulletinBoardClient bbc;
-    Post post;
+    private BulletinBoardClient bbc;
+    private Post post;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

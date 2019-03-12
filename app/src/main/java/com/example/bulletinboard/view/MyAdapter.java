@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
 
-    Context context;
+    private Context context;
     private ArrayList<Post> posts;
 
     public MyAdapter(Context ctx, ArrayList<Post> posts){
@@ -64,16 +64,5 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
     public int getItemCount() {
         return posts.size();
     }
-
-    //    public static class MyViewHolder extends RecyclerView.ViewHolder {
-//        TextView tvTitle;
-//        TextView tvContent;
-//
-//        MyViewHolder(View view){
-//            super(view);
-//            tvTitle = view.findViewById(R.id.tv_title);
-//            tvContent = view.findViewById(R.id.tv_content);
-//        }
-//    }
 
 }
