@@ -5,15 +5,21 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bulletinboard.R;
+import com.example.bulletinboard.controller.BulletinBoardClient;
+import com.example.bulletinboard.controller.VolleyCallBack;
 import com.example.bulletinboard.model.Post;
 
 public class DetailActivity extends AppCompatActivity {
+
+    private final String TAG = "DetailActivity";
 
     Context context;
 
@@ -22,6 +28,7 @@ public class DetailActivity extends AppCompatActivity {
     TextView title_tv;
     TextView content_tv;
 
+    BulletinBoardClient bbc;
     private Post post;
 
     @Override
@@ -45,6 +52,7 @@ public class DetailActivity extends AppCompatActivity {
         String title = intent.getStringExtra("title");
         String content = intent.getStringExtra("content");
 
+        bbc = BulletinBoardClient.getInstance(context);
         post = new Post(number, title, content);
 
         title_tv.setText(post.title);
@@ -69,6 +77,24 @@ public class DetailActivity extends AppCompatActivity {
                 context.startActivity(intent);
                 return true;
             case R.id.detail_action_delete:
+                Log.i(TAG, "Delete button pressed.");
+                bbc.deletePst(post.number, new VolleyCallBack() {
+                    @Override
+                    public void onError(Throwable t) {
+                        Toast.makeText(context, "Could not delete post. Please try again.", Toast.LENGTH_SHORT);
+                    }
+
+                    @Override
+                    public void onSuccess() {
+                        navigateUpTo(new Intent(context, MainActivity.class));
+                    }
+
+                    @Override
+                    public void onFailure() {
+                        Toast.makeText(context, "Could not delete post. Please try again.", Toast.LENGTH_SHORT);
+
+                    }
+                });
                 return true;
             default:
                 navigateUpTo(new Intent(this, MainActivity.class));

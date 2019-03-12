@@ -167,6 +167,28 @@ public class BulletinBoardClient {
         queue.add(stringRequest);
     }
 
+    public void deletePst(final int number, final VolleyCallBack callback) {
+        String url = baseURL + "/" + number;
+        StringRequest stringRequest= new StringRequest(Request.Method.DELETE, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                callback.onSuccess();
+                Log.d(TAG, "Get successful.");
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // do this on error
+                callback.onError(new Throwable());
+            }
+        });
+
+        stringRequest.setTag(TAG);
+        queue.add(stringRequest);
+    }
+
+
     public static ArrayList<Post> getPosts() {
         return posts;
     }
